@@ -40,7 +40,8 @@ UninstallDisplayName={#MyAppName} {#MyAppVersion}
 UninstallDisplayIcon={app}\Assets\deskbox.ico
 ArchitecturesAllowed=arm64
 ArchitecturesInstallIn64BitMode=arm64
-MinVersion=10.0.19041
+; Fork floor: 17763 (Windows 10 1809 / LTSC 2019); upstream ships 10.0.19041.
+MinVersion=10.0.17763
 DefaultDirName={code:GetDefaultInstallDir}
 DisableProgramGroupPage=yes
 DisableDirPage=no

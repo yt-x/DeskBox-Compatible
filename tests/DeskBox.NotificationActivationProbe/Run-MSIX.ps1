@@ -37,7 +37,7 @@ $manifest = @"
  <Identity Name="$packageName" Publisher="$publisher" Version="1.0.0.0" ProcessorArchitecture="x64" />
  <Properties><DisplayName>DeskBox notification probe</DisplayName><PublisherDisplayName>DeskBox</PublisherDisplayName><Logo>Assets\Logo.png</Logo></Properties>
  <Resources><Resource Language="en-US" /></Resources>
- <Dependencies><TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.22621.0" />
+ <Dependencies><TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22621.0" />
  <PackageDependency Name="Microsoft.WindowsAppRuntime.2" Publisher="$frameworkPublisher" MinVersion="2.5.1.0" /></Dependencies>
  <Applications><Application Id="App" Executable="DeskBox.NotificationActivationProbe.exe" EntryPoint="Windows.FullTrustApplication">
  <uap:VisualElements DisplayName="DeskBox notification probe" Description="Isolated activation verification" BackgroundColor="transparent" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" />

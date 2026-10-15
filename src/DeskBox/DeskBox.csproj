@@ -1,10 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows10.0.22621.0</TargetFramework>
-    <!-- Keep the compile-time SDK modern while declaring the supported Win10 floor explicitly. -->
-    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <!-- Keep the compile-time SDK modern while declaring the supported Win10 floor explicitly.
+         Fork floor: 17763 (Windows 10 1809 / LTSC 2019); upstream ships 19041. -->
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <RootNamespace>DeskBox</RootNamespace>
     <Version>1.5.8</Version>
     <AssemblyVersion>1.5.8.0</AssemblyVersion>
@@ -163,7 +164,7 @@
 
   <PropertyGroup Condition="'$(DeskBoxDistribution)' == 'Store'">
     <WindowsPackageType>MSIX</WindowsPackageType>
-    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <AppxPackageSigningEnabled Condition="'$(AppxPackageSigningEnabled)' == ''">false</AppxPackageSigningEnabled>
     <UapAppxPackageBuildMode Condition="'$(UapAppxPackageBuildMode)' == ''">SideloadOnly</UapAppxPackageBuildMode>

@@ -374,8 +374,22 @@ public static class WindowsCompatibilityService
                 try
                 {
                     var settings = new UISettings();
-                    settings.AnimationsEnabledChanged +=
-                        UiSettings_Changed;
+                    // AnimationsEnabledChanged ships in UniversalApiContract v10
+                    // (Windows 10 2004 / 19041), above this fork's 17763 floor, so it
+                    // must be probed rather than referenced directly — the same guard
+                    // already used for AdvancedEffectsEnabledChanged below.
+                    if (Windows.Foundation.Metadata.ApiInformation.IsEventPresent(
+                            "Windows.UI.ViewManagement.UISettings",
+                            "AnimationsEnabledChanged"))
+                    {
+                        // CA1416 cannot see ApiInformation guards (it only understands
+                        // OperatingSystem.* version checks), so the runtime probe above is
+                        // the real gate. Verified on 17763 by the readiness probe.
+#pragma warning disable CA1416
+                        settings.AnimationsEnabledChanged +=
+                            UiSettings_Changed;
+#pragma warning restore CA1416
+                    }
                     settings.TextScaleFactorChanged +=
                         UiSettings_TextScaleFactorChanged;
                     if (Windows.Foundation.Metadata.ApiInformation.IsEventPresent(
