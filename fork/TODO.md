@@ -4,23 +4,23 @@
 
 | 功能 | 状态 | 验收判定 | 证据 |
 |---|---|---|---|
-| F1 17763 就绪探针 | 进行中 | 目标机跑出完整报告且脚本无错误 | specs/evidence/0001-A-probe-build-machine-dryrun.md |
+| F1 17763 就绪探针 | 完成 | 目标机跑出完整报告且脚本无错误 | specs/evidence/0005-A-target-machine-acceptance.md |
 | F2 无管理员编译链探明 | 完成 | dotnet 10.0.402、cargo 1.96.0、试编译通过 | specs/evidence/0002-B-toolchain-restore.md |
-| F3 地板降至 17763 并制成补丁 | 完成 | 契约测试全绿且 CA1416 评审无未处理项 | specs/evidence/0003-A-floor-lowering.md |
-| F4 重编安装器 | 进行中 | 12 个必需文件齐全且安装器在目标机启动 | specs/evidence/0004-A-retail-package.md |
-| F5 实机验收 | 未开始 | 六项验收清单全部通过 | |
+| F3 地板降至 17763 并制成补丁 | 完成 | 契约测试 3/3 且 CA1416 归零 | specs/evidence/0003-A-floor-lowering.md |
+| F4 重编安装器 | 完成 | 12 个必需文件齐全且安装器在目标机安装成功 | specs/evidence/0004-A-retail-package.md |
+| F5 实机验收 | 完成 | 八项验收清单全部通过 | specs/evidence/0005-A-target-machine-acceptance.md |
 | F6 补丁重放机制 | 完成 | 干净 checkout 上 git apply 成功 | specs/evidence/0003-A-floor-lowering.md |
 
 ## 当前状态
 
-零售 AOT 出包链路全通：Native AOT 编译成功（dumpbin 确认无 CLR 头），载荷 386 文件与安装清单一致，12 个必需文件齐备，安装器已按 17763 地板重编为 Output\DeskBox_Setup_1.5.8_x64.exe（33240988 字节）。MSVC 14.29 满足 ILC 要求，最后一个技术风险已排除。地板改动 11 文件已入库，契约测试 3/3，CA1416 归零。
+六项功能全部完成。安装器 Output\DeskBox_Setup_1.5.8_x64.exe 已在目标机（Windows 10 Enterprise LTSC 2019，build 17763.9020）安装成功并通过八项验收；探针报告 0 FAIL。地板值 17763 已进入源码与产物。可重放补丁 patches/17763-floor.patch 已验证。CA1416 归零，原高危点 C3 经目标机实测关闭。
 
 ## 下一步
 
-1. 把探针与安装器拷到目标机运行——探针产出报告且安装器完成安装、DeskBox 能启动
-2. 按六项清单在目标机验收——逐项勾选并回收结果
-3. 补齐 arm64 包——ISCC 以 DeskBox.arm64.iss 产出 arm64 安装器
+1. 同步上游更新——git fetch upstream 后以 patches/17763-floor.patch 重放并重跑 dotnet test
+2. 补齐 arm64 包——ISCC 以 DeskBox.arm64.iss 产出 arm64 安装器
+3. 若 uxtheme 菜单主题在目标机出现异常——在 deskbox-thumbnail-proxy 加序数版本守卫
 
 ## 阻塞
 
-- F4 后半与 F5 依赖目标机文件搬运：由用户手工完成，与构建机无网络互通
+无

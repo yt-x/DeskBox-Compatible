@@ -10,7 +10,7 @@
 
 ## 组件与边界
 
-fork/ 下全部为新增文件；上游文件仅补丁清单覆盖的 12 处常量与一处契约测试被修改。
+fork/ 下全部为新增文件；上游文件仅补丁清单覆盖的地板常量、一处契约测试与一处事件守卫被修改（共 11 个文件）。
 
 - probes/：只读系统探针，纯 PowerShell，不安装、不写注册表；独立于上游构建产物。
 - patches/17763-floor.patch：对上述上游修改点的集合，用 git apply 在干净上游上重放。
@@ -34,7 +34,12 @@ fork/ 下全部为新增文件；上游文件仅补丁清单覆盖的 12 处常�
 
 产物为 current-user 范围的 Inno 安装器，目标机上无管理员权限安装；验收在目标机测试目录进行，不指向真实桌面数据。
 
-## 待探明点
+## 地板相关的系统事实
 
-- 上游 WindowsCompatibilityService.cs::AreAdvancedEffectsEnabled 直接引用 UniversalApiContract v10 的属性，17763 对应 v8，探针负责验证其存在性。
-- 上游 deskbox-thumbnail-proxy 的 main.rs::UXTHEME_PREFERRED_APP_MODE_ORDINAL 等四个 uxtheme 序数在 17763 上的解析结果未知，探针负责解析。
+目标机（build 17763）实测结论如下，构成本分支可行性的依据：
+
+- WindowsCompatibilityService.cs::AreAdvancedEffectsEnabled 引用的 `UISettings.AdvancedEffectsEnabled` 在 17763 上存在且可读，该引用不构成地板障碍。
+- WindowsCompatibilityService.cs 中 `UISettings.AnimationsEnabledChanged` 的订阅按契约自 19041 起提供，在 17763 上须由 `ApiInformation.IsEventPresent` 守卫，该守卫已加装。
+- deskbox-thumbnail-proxy 的 main.rs 使用的四个 uxtheme 序数（104/133/135/136）在 17763 的 uxtheme 10.0.17763.1 上均可解析且地址互异；解析成功不证明指向预期函数，语义正确性无独立验证手段。
+- 目标机未预装 Windows App Runtime，私有自包含载荷是可运行的前提；Native AOT 使 .NET 运行时同样无需预装。
+- 能力门禁集中在 WindowsCompatibilityService.cs，一律与 build 22000 比较，17763 与上游地板 19041 走同一分支。
