@@ -26,6 +26,8 @@ Copy-Item -LiteralPath (Join-Path $repo 'src\DeskBox\Assets\Store\Square150x150L
 Copy-Item -LiteralPath (Join-Path $repo 'src\DeskBox\Assets\Store\Square44x44Logo.png') -Destination (Join-Path $payload 'Assets\SmallLogo.png')
 $publisher = [Security.SecurityElement]::Escape($certificate.Subject)
 $frameworkPublisher = [Security.SecurityElement]::Escape($runtime.Publisher)
+# Fork floor: 17763 (Windows 10 1809 / LTSC 2019); upstream ships 10.0.19041.
+# The MinVersion inside the manifest here-string below matches that floor.
 $manifest = @"
 <?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"

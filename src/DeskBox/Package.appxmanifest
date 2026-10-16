@@ -22,6 +22,7 @@
     <Logo>Assets\Store\StoreLogo.png</Logo>
   </Properties>
 
+  <!-- Fork floor: 17763 (Windows 10 1809 / LTSC 2019); upstream ships 10.0.19041. -->
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.0" />
   </Dependencies>

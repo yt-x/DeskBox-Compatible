@@ -71,6 +71,8 @@ internal static class Probe {
         & $compiler /nologo /target:winexe /platform:x64 ('/out:' + (Join-Path $packageRoot 'Probe.exe')) $sourcePath
         if ($LASTEXITCODE -ne 0) { throw 'Probe compilation failed.' }
         $publisher = [Security.SecurityElement]::Escape($certificate.Subject)
+        # Fork floor: 17763 (Windows 10 1809 / LTSC 2019); upstream ships 10.0.19041.
+        # The MinVersion inside the manifest here-string below matches that floor.
         @"
 <?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" IgnorableNamespaces="uap uap3 desktop rescap">
