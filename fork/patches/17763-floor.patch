@@ -1,5 +1,5 @@
 diff --git a/installer/DeskBox.arm64.iss b/installer/DeskBox.arm64.iss
-index 8177c61..d2871d9 100644
+index 8177c613..d2871d9c 100644
 --- a/installer/DeskBox.arm64.iss
 +++ b/installer/DeskBox.arm64.iss
 @@ -40,7 +40,8 @@ UninstallDisplayName={#MyAppName} {#MyAppVersion}
@@ -13,7 +13,7 @@ index 8177c61..d2871d9 100644
  DisableProgramGroupPage=yes
  DisableDirPage=no
 diff --git a/installer/DeskBox.iss b/installer/DeskBox.iss
-index 9a2c0b2..0dcb023 100644
+index 9a2c0b21..0dcb023e 100644
 --- a/installer/DeskBox.iss
 +++ b/installer/DeskBox.iss
 @@ -42,7 +42,8 @@ UninstallDisplayName={#MyAppName} {#MyAppVersion}
@@ -27,7 +27,7 @@ index 9a2c0b2..0dcb023 100644
  DisableProgramGroupPage=yes
  DisableDirPage=no
 diff --git a/scripts/Test-StoreStartupTaskLifecycle.ps1 b/scripts/Test-StoreStartupTaskLifecycle.ps1
-index 274028d..2265bc9 100644
+index 274028d5..2265bc94 100644
 --- a/scripts/Test-StoreStartupTaskLifecycle.ps1
 +++ b/scripts/Test-StoreStartupTaskLifecycle.ps1
 @@ -71,13 +71,15 @@ internal static class Probe {
@@ -48,7 +48,7 @@ index 274028d..2265bc9 100644
      <uap:VisualElements DisplayName="DeskBox Startup Probe" Description="Temporary startup lifecycle test" BackgroundColor="transparent" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" />
      <Extensions><uap3:Extension Category="windows.appExecutionAlias" Executable="Probe.exe" EntryPoint="Windows.FullTrustApplication"><uap3:AppExecutionAlias><desktop:ExecutionAlias Alias="$aliasName" /></uap3:AppExecutionAlias></uap3:Extension></Extensions>
 diff --git a/src/DeskBox.Updater/DeskBox.Updater.csproj b/src/DeskBox.Updater/DeskBox.Updater.csproj
-index c7f8e7c..6e609de 100644
+index c7f8e7c4..6e609dee 100644
 --- a/src/DeskBox.Updater/DeskBox.Updater.csproj
 +++ b/src/DeskBox.Updater/DeskBox.Updater.csproj
 @@ -3,7 +3,8 @@
@@ -62,7 +62,7 @@ index c7f8e7c..6e609de 100644
      <AssemblyName>DeskBox.Updater</AssemblyName>
      <Nullable>enable</Nullable>
 diff --git a/src/DeskBox/DeskBox.csproj b/src/DeskBox/DeskBox.csproj
-index 24425b8..84de4f5 100644
+index 24425b8f..84de4f52 100644
 --- a/src/DeskBox/DeskBox.csproj
 +++ b/src/DeskBox/DeskBox.csproj
 @@ -1,10 +1,11 @@
@@ -90,7 +90,7 @@ index 24425b8..84de4f5 100644
      <AppxPackageSigningEnabled Condition="'$(AppxPackageSigningEnabled)' == ''">false</AppxPackageSigningEnabled>
      <UapAppxPackageBuildMode Condition="'$(UapAppxPackageBuildMode)' == ''">SideloadOnly</UapAppxPackageBuildMode>
 diff --git a/src/DeskBox/Package.appxmanifest b/src/DeskBox/Package.appxmanifest
-index 6c024c2..1258910 100644
+index 6c024c2a..12589105 100644
 --- a/src/DeskBox/Package.appxmanifest
 +++ b/src/DeskBox/Package.appxmanifest
 @@ -1,4 +1,4 @@
@@ -111,7 +111,7 @@ index 6c024c2..1258910 100644
  
    <Resources>
 diff --git a/src/DeskBox/Services/WindowsCompatibilityService.cs b/src/DeskBox/Services/WindowsCompatibilityService.cs
-index 210429b..308df6b 100644
+index 210429b4..308df6bf 100644
 --- a/src/DeskBox/Services/WindowsCompatibilityService.cs
 +++ b/src/DeskBox/Services/WindowsCompatibilityService.cs
 @@ -374,8 +374,22 @@ public static class WindowsCompatibilityService
@@ -140,7 +140,7 @@ index 210429b..308df6b 100644
                          UiSettings_TextScaleFactorChanged;
                      if (Windows.Foundation.Metadata.ApiInformation.IsEventPresent(
 diff --git a/tests/DeskBox.NotificationActivationProbe/DeskBox.NotificationActivationProbe.csproj b/tests/DeskBox.NotificationActivationProbe/DeskBox.NotificationActivationProbe.csproj
-index b95be60..9ba4d97 100644
+index b95be605..9ba4d979 100644
 --- a/tests/DeskBox.NotificationActivationProbe/DeskBox.NotificationActivationProbe.csproj
 +++ b/tests/DeskBox.NotificationActivationProbe/DeskBox.NotificationActivationProbe.csproj
 @@ -2,7 +2,8 @@
@@ -154,7 +154,7 @@ index b95be60..9ba4d97 100644
      <WindowsAppSDKBootstrapInitialize>false</WindowsAppSDKBootstrapInitialize>
      <ImplicitUsings>enable</ImplicitUsings>
 diff --git a/tests/DeskBox.NotificationActivationProbe/Run-MSIX.ps1 b/tests/DeskBox.NotificationActivationProbe/Run-MSIX.ps1
-index 08c2ff6..4e567da 100644
+index 08c2ff63..4e567da9 100644
 --- a/tests/DeskBox.NotificationActivationProbe/Run-MSIX.ps1
 +++ b/tests/DeskBox.NotificationActivationProbe/Run-MSIX.ps1
 @@ -26,6 +26,8 @@ Copy-Item -LiteralPath (Join-Path $repo 'src\DeskBox\Assets\Store\Square150x150L
@@ -176,7 +176,7 @@ index 08c2ff6..4e567da 100644
   <Applications><Application Id="App" Executable="DeskBox.NotificationActivationProbe.exe" EntryPoint="Windows.FullTrustApplication">
   <uap:VisualElements DisplayName="DeskBox notification probe" Description="Isolated activation verification" BackgroundColor="transparent" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" />
 diff --git a/tests/DeskBox.Tests/DeskBox.Tests.csproj b/tests/DeskBox.Tests/DeskBox.Tests.csproj
-index d0f48e4..8ae7e6a 100644
+index d0f48e48..8ae7e6a3 100644
 --- a/tests/DeskBox.Tests/DeskBox.Tests.csproj
 +++ b/tests/DeskBox.Tests/DeskBox.Tests.csproj
 @@ -2,7 +2,8 @@
@@ -190,7 +190,7 @@ index d0f48e4..8ae7e6a 100644
      <Nullable>enable</Nullable>
      <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
 diff --git a/tests/DeskBox.Tests/Windows10InstallerCompatibilityContractTests.cs b/tests/DeskBox.Tests/Windows10InstallerCompatibilityContractTests.cs
-index 946392a..eb90a76 100644
+index 946392a3..eb90a769 100644
 --- a/tests/DeskBox.Tests/Windows10InstallerCompatibilityContractTests.cs
 +++ b/tests/DeskBox.Tests/Windows10InstallerCompatibilityContractTests.cs
 @@ -11,15 +11,17 @@ public sealed class Windows10InstallerCompatibilityContractTests

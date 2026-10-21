@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using DeskBox.Platform;
 
@@ -96,6 +97,17 @@ public static class ShellOpenWithHelper
 {
     private const int MaxEntries = 12;
 
+    // IL2050 says COM interop correctness cannot be guaranteed after trimming.
+    // It is a false positive here: ShellOpenWithEnumHandlers is statically
+    // referenced by this method (Next is called directly on the returned
+    // handler), so its member surface is kept by the trimmer. Suppressed at
+    // this call site rather than widening the retail publish warning gate,
+    // which requires IL2050 to stay at zero. Fork note: upstream ships this
+    // call without the suppression and its retail AOT gate rejects IL2050.
+    [UnconditionalSuppressMessage(
+        "TrimAnalysis",
+        "IL2050",
+        Justification = "ShellOpenWithEnumHandlers is statically referenced at this call site; its members survive trimming.")]
     public static IReadOnlyList<OpenWithHandlerEntry> GetRecommendedApps(
         string filePath)
     {
