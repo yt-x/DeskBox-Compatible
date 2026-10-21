@@ -10,6 +10,8 @@
 | servicing family | 19041–19045 同属一族；17763 属 1809/LTSC 族，跨度与上游不同 | tests/DeskBox.Tests/Windows10InstallerCompatibilityContractTests.cs |
 | self-contained | Windows App SDK 运行时随包私有部署，目标机无需预装 | scripts/publish-aot-retail.ps1 |
 | CA1416 | 平台兼容性分析警告，识别调用点低于目标平台下限的情形；不识别 ApiInformation 运行时守卫 | 构建实测 |
+| IL2050 | 裁剪分析警告，指 COM 封送正确性无法保证；上游要求为零，接口被静态引用时为误报 | 构建实测与上游 AOT 路线文档 |
+| ilc parallelism | Native AOT 编译器并发线程数，默认等于逻辑处理器数；内存紧张时需下调 | ilc --help |
 | UniversalApiContract | WinRT API 契约版本体系；UISettings.AdvancedEffectsEnabled 在 17763 上实测存在 | 目标机探针报告 |
 | Full 载荷 | 内置私有 Windows App Runtime 的安装包形态，离线可用 | installer/DeskBox.Dependencies.iss |
 | 地板（floor） | 声明的最低支持系统版本；本分支为 build 17763 | specs/current.md |

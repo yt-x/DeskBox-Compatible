@@ -20,7 +20,7 @@
 | 本轮明细 | specs/changes/ |
 | 验证证据 | specs/evidence/ |
 | fork 架构形态 | docs/architecture.md |
-| 版本归档记录 | docs/releases/ |
+| 版本归档记录 | docs/releases/（v1.5.8-ltsc17763.1.md、v1.5.8-ltsc17763.2.md） |
 | 术语 | CONTEXT.md |
 | 因果 | decisions/ |
 | 上游架构 | 仓库 docs/architecture/（只读引用，不改） |

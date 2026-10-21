@@ -1,0 +1,23 @@
+<Project>
+
+  <!--
+    TEMPORARY build-host workaround (not part of the fork patch).
+
+    The retail Native AOT publish runs ilc with its default parallelism of one
+    thread per logical processor (12 here). On a memory-tight build host that
+    peak exhausts RAM and ilc dies with "Insufficient memory" while emitting
+    unwind info. This target appends the parallelism switch only when the
+    environment variable DESKBOX_ILC_PARALLELISM is set, so normal builds are
+    unaffected. Parallelism does not change codegen results.
+  -->
+  <Target Name="ForkIlcParallelism"
+          BeforeTargets="IlcCompile"
+          Condition="'$(DESKBOX_ILC_PARALLELISM)' != ''">
+    <ItemGroup>
+      <IlcArg Include="--parallelism:$(DESKBOX_ILC_PARALLELISM)" />
+    </ItemGroup>
+    <Message Importance="high"
+             Text="Fork: constraining ilc parallelism to $(DESKBOX_ILC_PARALLELISM)." />
+  </Target>
+
+</Project>

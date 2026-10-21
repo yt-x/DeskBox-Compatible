@@ -22,6 +22,7 @@ fork/ 下全部为新增文件；上游文件仅补丁清单覆盖的地板常�
 
 - 补丁重放流：上游 main 更新 → git apply 补丁 → dotnet test → publish-aot-retail.ps1 → ISCC → 安装器。
 - 验证反馈流：探针在目标机输出报告 → 用户搬运回构建机 → 分析后决策（放行 / 修复 / 放弃）。
+- 构建内存约束流：仓库根 Directory.Build.targets 在设置 DESKBOX_ILC_PARALLELISM 时于 IlcCompile 前注入 ilc 并行度；未设置时不生效。
 
 ## 外部接口
 
